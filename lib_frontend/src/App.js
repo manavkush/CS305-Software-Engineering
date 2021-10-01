@@ -19,7 +19,7 @@ import {
 import Footer from "./Components/Footer/Footer";
 import OnImagesLoaded from "react-on-images-loaded";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
-// import Printer from "./Components/Printer/Printer.js";
+import Printer from "./Components/Printer/Printer.js";
 // import Teampage from "./Components/Teampage/Teampage.js";
 class NavBar extends Component {
   constructor(props) {
@@ -77,6 +77,15 @@ class NavBar extends Component {
               {/* Team Link ---> Harish */}
 
               {/* Print Link ----> Pratik */}
+              <NavLink
+                to="/printmg"
+                className="NavLink nav-link"
+                style={styles}
+                activeClassName="selected"
+                onClick={() => this.setState({ expanded: false })}
+              >
+                <div className="secondary_Text">Printer</div>
+              </NavLink>
             </Nav>
 
             {/* Google Authentication */}
@@ -164,6 +173,18 @@ class App extends Component {
           <Switch>
             {/* root route (omkar) */}
             {/* printmg route */}
+            <Route
+              path="/printmg"
+              exact
+              render={(props) => (
+                <Printer
+                  {...props}
+                  hideLoader={this.props.hideLoader}
+                  showLoader={this.props.showLoader}
+                  emailid={this.state.emailid}
+                />
+              )}
+            />
             {/* team route */}
           </Switch>
           <Error msg={this.state.error} showError={this.state.showError} />
